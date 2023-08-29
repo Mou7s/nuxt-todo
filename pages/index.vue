@@ -1,14 +1,20 @@
 <script setup lang="ts">
-
+let arr = ref(['h', 'e', 'l', 'l', 'o']);
 </script>
 
 <template>
-  <div class="min-h-screen bg-white dark:bg-neutral-800 grid place-content-center">
-    <p class="text-9xl font-bold dark:text-neutral-50">hello world!</p>
+  <div
+    class="min-h-screen dark:text-neutral-50 dark:bg-neutral-800 grid gap-1 place-content-center"
+  >
+    <NavHeader></NavHeader>
+    <NavMain></NavMain>
+    <NavFooter></NavFooter>
   </div>
 </template>
 
-
-
-
-<style scoped></style>
+<style>
+button {
+  background-color: #7cacf8;
+  border-radius: 0.25rem;
+}
+</style>
