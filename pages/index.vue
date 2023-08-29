@@ -4,7 +4,7 @@ let arr = ref(['h', 'e', 'l', 'l', 'o']);
 
 <template>
   <div
-    class="min-h-screen dark:text-neutral-50 dark:bg-neutral-800 grid gap-1 place-content-center"
+    class="min-h-screen dark:text-neutral-50 dark:bg-neutral-800 grid gap-2 place-content-center"
   >
     <NavHeader></NavHeader>
     <NavMain></NavMain>
