@@ -1,45 +1,9 @@
 <template>
   <div
-    class="min-h-screen dark:text-neutral-50 dark:bg-neutral-800 grid gap-2 place-content-center"
+    class="grid place-content-center min-h-screen dark:bg-neutral-950 dark:text-neutral-50"
   >
-    <h1 class="text-3xl">Todolist</h1>
-
-    <form @submit.prevent>
-      <input
-        @keyup.enter="addTodo"
-        type="text"
-        v-model="newTodo"
-        placeholder="new todo"
-        class="text-neutral-800 rounded mx-1 mt-5"
-      />
-    </form>
-
-    <div v-for="(todo, index) in arr" :key="index">
-      <Todo :text="todo" @delete-item="() => delItem(index)" />
-    </div>
+    <p class="text-9xl font-bold">hello world</p>
   </div>
 </template>
 
-<script setup lang="ts">
-const arr = ref([]);
-const newTodo = ref();
-
-const addTodo = () => {
-  if (newTodo.value.trim() !== '') {
-    arr.value.push(newTodo.value);
-    newTodo.value = '';
-    console.log(arr.value);
-  }
-};
-
-const delItem = (index: number) => {
-  console.log(index);
-  arr.value.splice(index, 1);
-};
-</script>
-
-<style>
-button {
-  border-radius: 0.25rem;
-}
-</style>
+<script setup lang="ts"></script>
