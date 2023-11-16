@@ -4,8 +4,10 @@ const todo = ref('');
 const dones = ref(['123', '456']);
 
 const addTodo = () => {
-  todos.value.push(todo.value);
-  todo.value = '';
+  if (todo.value !== '') {
+    todos.value.push(todo.value);
+    todo.value = '';
+  }
 };
 
 const doneTodo = (index) => {
