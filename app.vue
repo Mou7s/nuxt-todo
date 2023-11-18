@@ -1,7 +1,16 @@
 <script setup>
-const todos = ref(['789']);
-const todo = ref('');
-const dones = ref(['123', '456']);
+onMounted(() => {
+  if (localStorage.getItem('todos') !== null) {
+    todos.value = localStorage.getItem('todos').split(',');
+  }
+  if (localStorage.getItem('dones') !== null) {
+    dones.value = localStorage.getItem('dones').split(',');
+  }
+});
+
+const todos = useState('todos', () => ['things to do', 'things to do 2']);
+const todo = useState('todo', () => '');
+const dones = useState('dones', () => ['done 1', 'done 2']);
 
 const addTodo = () => {
   if (todo.value !== '') {
