@@ -76,9 +76,14 @@ const clearLocalStorage = () => {
     <p class="text-center text-8xl font-serif">todos</p>
 
     <UCard class="mt-10">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center gap-4">
         <UButton icon="i-heroicons-calendar-days-20-solid" :label="label" />
-
+        <UInput
+          v-model="todo"
+          placeholder="press Enter to add a todo"
+          @keyup.enter="addTodo"
+          class="w-full"
+        ></UInput>
         <div>
           <ClientOnly>
             <UButton
@@ -97,7 +102,6 @@ const clearLocalStorage = () => {
         </div>
       </div>
     </UCard>
-    <UCard></UCard>
 
     <UCard class="mt-10">
       <div class="font-bold text-center">
