@@ -71,6 +71,10 @@ const clearLocalStorage = () => {
 </script>
 
 <template>
+  <meta
+    name="google-site-verification"
+    content="uMb53AX2NHoWvhBjQGUPiU2EvzBs2pWg90HYPMkcMP4"
+  />
   <UContainer>
     <p class="text-center text-8xl font-serif">todos</p>
 
