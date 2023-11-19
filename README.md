@@ -1,4 +1,8 @@
-# Nuxt UI Minimal Starter
+# A todo list web application powered by nuxt
+
+## Tech stack
+
+nuxt3;nuxt ui;iconify;netlify;localstorage
 
 Look at [Nuxt docs](https://nuxt.com/docs/getting-started/introduction) and [Nuxt UI docs](https://ui.nuxt.com) to learn more.
 
