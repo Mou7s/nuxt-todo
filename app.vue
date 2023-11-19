@@ -5,7 +5,6 @@ useSeoMeta({
   description: 'a todo app powered by nuxt3 and nuxt ui',
   ogDescription: 'a todo app powered by nuxt3 and nuxt ui',
 });
-const largeScreen = computed(() => window.innerWidth > 640);
 const colorMode = useColorMode();
 const date = useState('date', () => new Date());
 
@@ -78,7 +77,7 @@ const clearLocalStorage = () => {
     <UCard class="mt-10">
       <div class="flex gap-4 justify-between items-center">
         <UButton
-          v-if="largeScreen"
+          class="hidden sm:inline-flex"
           icon="i-heroicons-calendar-days-20-solid"
           :label="label"
         />
