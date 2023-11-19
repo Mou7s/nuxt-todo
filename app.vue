@@ -34,6 +34,11 @@ const updateLocalStorage = () => {
   localStorage.setItem('todos', JSON.stringify(todos.value));
   localStorage.setItem('dones', JSON.stringify(dones.value));
 };
+
+const clearLocalStorage = () => {
+  localStorage.clear();
+  window.location.reload(); // 刷新页面
+};
 </script>
 
 <template>
@@ -42,7 +47,7 @@ const updateLocalStorage = () => {
     <UCard class="mt-10 grid place-content-center">
       <UInput
         v-model="todo"
-        placeholder="What needs to be done?"
+        placeholder="press Enter to add a todo"
         class="w-48"
         @keyup.enter="addTodo"
       ></UInput>
@@ -64,6 +69,9 @@ const updateLocalStorage = () => {
         <p class="m-2">
           {{ done }}
         </p>
+      </div>
+      <div class="grid place-content-center mt-10">
+        <UButton @click="clearLocalStorage"><p>clear LocalStorage</p></UButton>
       </div>
     </UCard>
   </UContainer>
