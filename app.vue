@@ -60,9 +60,16 @@ const clearLocalStorage = () => {
       </div>
 
       <div v-for="(todo, index) of todos" :key="index" class="text-center">
-        <p class="m-2">
-          {{ todo }} <UButton @click="doneTodo(index)">Del</UButton>
-        </p>
+        <ul>
+          <li class="m-2">
+            {{ todo }}
+            <UButton @click="doneTodo(index)">
+              <UIcon
+                name="i-mdi-checkbox-multiple-marked-circle-outline"
+              ></UIcon>
+            </UButton>
+          </li>
+        </ul>
       </div>
     </UCard>
 
