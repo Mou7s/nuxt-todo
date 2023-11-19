@@ -1,10 +1,10 @@
 <script setup>
 onMounted(() => {
   if (localStorage.getItem('todos') !== null) {
-    todos.value = localStorage.getItem('todos').split(',');
+    todos.value = JSON.parse(localStorage.getItem('todos'));
   }
   if (localStorage.getItem('dones') !== null) {
-    dones.value = localStorage.getItem('dones').split(',');
+    dones.value = JSON.parse(localStorage.getItem('dones'));
   }
 });
 
