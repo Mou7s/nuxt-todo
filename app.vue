@@ -42,8 +42,10 @@ const updateLocalStorage = () => {
 };
 
 const clearLocalStorage = () => {
-  localStorage.clear();
-  window.location.reload(); // 刷新页面
+  if (confirm('Are you sure to clear LocalStorage?')) {
+    localStorage.clear();
+    window.location.reload();
+  }
 };
 </script>
 
