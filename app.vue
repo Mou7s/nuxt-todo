@@ -5,7 +5,7 @@ useSeoMeta({
   description: 'a todo app powered by nuxt3 and nuxt ui',
   ogDescription: 'a todo app powered by nuxt3 and nuxt ui',
 });
-
+const largeScreen = computed(() => window.innerWidth > 640);
 const colorMode = useColorMode();
 const date = useState('date', () => new Date());
 
@@ -69,8 +69,6 @@ const clearLocalStorage = () => {
     window.location.reload();
   }
 };
-
-const largeScreen = computed(() => window.innerWidth > 640);
 </script>
 
 <template>
