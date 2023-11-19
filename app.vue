@@ -69,6 +69,8 @@ const clearLocalStorage = () => {
     window.location.reload();
   }
 };
+
+const largeScreen = computed(() => window.innerWidth > 640);
 </script>
 
 <template>
@@ -76,8 +78,12 @@ const clearLocalStorage = () => {
     <p class="text-center text-8xl font-serif">todos</p>
 
     <UCard class="mt-10">
-      <div class="flex justify-between items-center gap-4">
-        <UButton icon="i-heroicons-calendar-days-20-solid" :label="label" />
+      <div class="flex gap-4 justify-between items-center">
+        <UButton
+          v-if="largeScreen"
+          icon="i-heroicons-calendar-days-20-solid"
+          :label="label"
+        />
         <UInput
           v-model="todo"
           placeholder="press Enter to add a todo"
