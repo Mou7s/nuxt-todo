@@ -8,9 +8,9 @@ onMounted(() => {
   }
 });
 
-const todos = useState('todos', () => ['things to do', 'things to do 2']);
+const todos = useState('todos', () => []);
 const todo = useState('todo', () => '');
-const dones = useState('dones', () => ['done 1', 'done 2']);
+const dones = useState('dones', () => []);
 
 const addTodo = () => {
   if (todo.value !== '') {
