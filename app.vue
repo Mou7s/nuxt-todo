@@ -75,6 +75,7 @@ const clearLocalStorage = () => {
     <Meta
       name="google-site-verification"
       :content="uMb53AX2NHoWvhBjQGUPiU2EvzBs2pWg90HYPMkcMP4"
+      content="uMb53AX2NHoWvhBjQGUPiU2EvzBs2pWg90HYPMkcMP4"
   /></Head>
 
   <UContainer>
