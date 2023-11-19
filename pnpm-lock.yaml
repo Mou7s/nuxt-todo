@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  '@iconify-json/mdi':
+    specifier: ^1.1.55
+    version: 1.1.55
+
 devDependencies:
   '@nuxt/devtools':
     specifier: latest
@@ -852,9 +857,14 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
+  /@iconify-json/mdi@1.1.55:
+    resolution: {integrity: sha512-ycnFub+EQx+3D/aDCg6iC7sjexOUa5GzxUNIZFFl0Pq7aDxbmhIludoyYnguEO3REyWf9FcOOmvVcQkdtwKHTw==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
+
   /@iconify/types@2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
-    dev: true
 
   /@iconify/utils@2.1.11:
     resolution: {integrity: sha512-M/w3PkN8zQYXi8N6qK/KhnYMfEbbb6Sk8RZVn8g+Pmmu5ybw177RpsaGwpziyHeUsu4etrexYSWq3rwnIqzYCg==}
@@ -1507,6 +1517,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: true
     bundledDependencies:
       - napi-wasm
@@ -4849,6 +4860,10 @@ packages:
     resolution: {integrity: sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==}
     engines: {node: ^14 || ^16 || >=18}
     hasBin: true
+    dev: true
+
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
     dev: true
 
   /negotiator@0.6.3:

@@ -54,24 +54,32 @@ const clearLocalStorage = () => {
     </UCard>
 
     <UCard class="mt-10">
-      <p class="font-bold text-center">ongoing</p>
+      <div class="font-bold text-center">
+        <UIcon name="i-mdi-calendar-today-outline"></UIcon>
+        <p>ongoing</p>
+      </div>
 
       <div v-for="(todo, index) of todos" :key="index" class="text-center">
         <p class="m-2">
           {{ todo }} <UButton @click="doneTodo(index)">Del</UButton>
         </p>
-      </div></UCard
-    >
+      </div>
+    </UCard>
+
     <UCard class="mt-10">
-      <p class="font-bold text-center">done</p>
+      <div class="font-bold text-center">
+        <UIcon name="i-mdi-checkbox-multiple-marked-circle-outline"></UIcon>
+        <p>done</p>
+      </div>
 
       <div v-for="(done, index) of dones" :key="index" class="text-center">
         <p class="m-2">
           {{ done }}
         </p>
       </div>
-      <div class="grid place-content-center mt-10">
+      <div class="grid place-content-center grid-flow-col gap-4 mt-10">
         <UButton @click="clearLocalStorage"><p>clear LocalStorage</p></UButton>
+        <ULink><UIcon name="i-mdi-github" /> </ULink>
       </div>
     </UCard>
   </UContainer>
