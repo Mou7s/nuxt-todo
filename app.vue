@@ -5,6 +5,28 @@ useSeoMeta({
   description: 'a todo app powered by nuxt3 and nuxt ui',
   ogDescription: 'a todo app powered by nuxt3 and nuxt ui',
 });
+
+const colorMode = useColorMode();
+const date = useState('date', () => new Date());
+
+const isDark = computed({
+  get() {
+    return colorMode.value === 'dark';
+  },
+  set() {
+    colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
+  },
+});
+
+const label = computed(() =>
+  date.value.toLocaleDateString('en-us', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  })
+);
+
 onMounted(() => {
   if (localStorage.getItem('todos') !== null) {
     todos.value = JSON.parse(localStorage.getItem('todos'));
@@ -51,15 +73,31 @@ const clearLocalStorage = () => {
 
 <template>
   <UContainer>
-    <p class="text-center text-8xl">todos</p>
-    <UCard class="mt-10 grid place-content-center">
-      <UInput
-        v-model="todo"
-        placeholder="press Enter to add a todo"
-        class="w-48"
-        @keyup.enter="addTodo"
-      ></UInput>
+    <p class="text-center text-8xl font-serif">todos</p>
+
+    <UCard class="mt-10">
+      <div class="flex justify-between items-center">
+        <UButton icon="i-heroicons-calendar-days-20-solid" :label="label" />
+
+        <div>
+          <ClientOnly>
+            <UButton
+              :icon="
+                isDark
+                  ? 'i-heroicons-moon-20-solid'
+                  : 'i-heroicons-sun-20-solid'
+              "
+              color="gray"
+              variant="ghost"
+              aria-label="Theme"
+              @click="isDark = !isDark"
+            >
+            </UButton>
+          </ClientOnly>
+        </div>
+      </div>
     </UCard>
+    <UCard></UCard>
 
     <UCard class="mt-10">
       <div class="font-bold text-center">
