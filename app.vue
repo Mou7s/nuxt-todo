@@ -9,12 +9,7 @@ useHead({
   ],
 });
 
-// useSeoMeta({
-//   title: 'Nuxt todo',
-//   ogTitle: 'Nuxt todo',
-//   description: 'a todo app powered by nuxt3 and nuxt ui',
-//   ogDescription: 'a todo app powered by nuxt3 and nuxt ui',
-// });
+
 
 const colorMode = useColorMode();
 const date = useState('date', () => new Date());
