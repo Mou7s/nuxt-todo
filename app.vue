@@ -1,10 +1,21 @@
 <script setup>
-useSeoMeta({
+useHead({
   title: 'Nuxt todo',
-  ogTitle: 'Nuxt todo',
-  description: 'a todo app powered by nuxt3 and nuxt ui',
-  ogDescription: 'a todo app powered by nuxt3 and nuxt ui',
+  meta: [
+    {
+      name: 'google-site-verification',
+      content: 'uMb53AX2NHoWvhBjQGUPiU2EvzBs2pWg90HYPMkcMP4',
+    },
+  ],
 });
+
+// useSeoMeta({
+//   title: 'Nuxt todo',
+//   ogTitle: 'Nuxt todo',
+//   description: 'a todo app powered by nuxt3 and nuxt ui',
+//   ogDescription: 'a todo app powered by nuxt3 and nuxt ui',
+// });
+
 const colorMode = useColorMode();
 const date = useState('date', () => new Date());
 
@@ -71,13 +82,6 @@ const clearLocalStorage = () => {
 </script>
 
 <template>
-  <Head>
-    <Meta
-      name="google-site-verification"
-      :content="uMb53AX2NHoWvhBjQGUPiU2EvzBs2pWg90HYPMkcMP4"
-      content="uMb53AX2NHoWvhBjQGUPiU2EvzBs2pWg90HYPMkcMP4"
-  /></Head>
-
   <UContainer>
     <p class="text-center text-8xl font-serif">todos</p>
 
