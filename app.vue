@@ -9,8 +9,6 @@ useHead({
   ],
 });
 
-
-
 const colorMode = useColorMode();
 const date = useState('date', () => new Date());
 
@@ -31,7 +29,7 @@ const label = computed(() =>
     day: 'numeric',
   })
 );
-
+//todo
 onMounted(() => {
   if (localStorage.getItem('todos') !== null) {
     todos.value = JSON.parse(localStorage.getItem('todos'));
@@ -61,6 +59,10 @@ const doneTodo = (index) => {
   todos.value.splice(index, 1);
 
   updateLocalStorage();
+};
+
+const editTodo = (index) => {
+  todos.value[index] = prompt('Edit todo', todos.value[index]);
 };
 
 const updateLocalStorage = () => {
@@ -122,10 +124,13 @@ const clearLocalStorage = () => {
         <ul>
           <li class="m-2">
             {{ todo }}
-            <UButton @click="doneTodo(index)">
-              <UIcon
-                name="i-mdi-checkbox-multiple-marked-circle-outline"
-              ></UIcon>
+            <UButton @click="doneTodo(index)" class="mx-2">
+              <UIcon name="i-mdi-checkbox-multiple-marked-circle-outline">
+              </UIcon>
+            </UButton>
+
+            <UButton @click="editTodo(index)">
+              <UIcon name="i-mdi-pencil"></UIcon>
             </UButton>
           </li>
         </ul>
