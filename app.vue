@@ -94,7 +94,8 @@ const clearLocalStorage = () => {
           placeholder="press Enter to add a todo"
           @keyup.enter="addTodo"
           class="w-full"
-        ></UInput>
+        >
+        </UInput>
         <div>
           <ClientOnly>
             <UButton
