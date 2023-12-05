@@ -63,6 +63,7 @@ const doneTodo = (index) => {
 
 const editTodo = (index) => {
   todos.value[index] = prompt('Edit todo', todos.value[index]);
+  updateLocalStorage();
 };
 
 const updateLocalStorage = () => {
