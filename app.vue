@@ -9,6 +9,13 @@ useHead({
   ],
 });
 
+useSeoMeta({
+  title: 'Nuxt todo',
+  ogTitle: 'Nuxt todo',
+  description: 'A todo application built with nuxt deploy on netlify',
+  ogDescription: 'A todo application built with nuxt deploy on netlify',
+});
+
 const colorMode = useColorMode();
 const date = useState('date', () => new Date());
 
