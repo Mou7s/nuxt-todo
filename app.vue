@@ -36,52 +36,80 @@ const label = computed(() =>
     day: 'numeric',
   })
 );
-//todo
-onMounted(() => {
-  if (localStorage.getItem('todos') !== null) {
-    todos.value = JSON.parse(localStorage.getItem('todos'));
-  }
-  if (localStorage.getItem('dones') !== null) {
-    dones.value = JSON.parse(localStorage.getItem('dones'));
-  }
-});
 
 const todos = useState('todos', () => []);
 const todo = useState('todo', () => '');
 const dones = useState('dones', () => []);
+const isSyncing = ref(false);
+const syncError = ref('');
 
-const addTodo = () => {
-  if (todo.value !== '') {
-    todos.value.push(todo.value);
+const fetchTodos = async () => {
+  try {
+    const data = await $fetch('/api/todos');
+    todos.value = data.todos;
+    dones.value = data.dones;
+    syncError.value = '';
+  } catch {
+    syncError.value = 'Failed to load shared todos.';
+  }
+};
+
+onMounted(() => {
+  fetchTodos();
+});
+
+const saveTodos = async () => {
+  isSyncing.value = true;
+  try {
+    await $fetch('/api/todos', {
+      method: 'PUT',
+      body: {
+        todos: todos.value,
+        dones: dones.value,
+      },
+    });
+    syncError.value = '';
+  } catch {
+    syncError.value = 'Failed to sync shared todos.';
+  } finally {
+    isSyncing.value = false;
+  }
+};
+
+const addTodo = async () => {
+  const value = todo.value.trim();
+  if (value !== '') {
+    todos.value.push(value);
     todo.value = '';
   }
 
-  updateLocalStorage();
+  await saveTodos();
 };
 
-const doneTodo = (index) => {
+const doneTodo = async (index) => {
   // 将 'todos' 中的值移动到 'dones'
   dones.value.push(todos.value[index]);
   // 从 'todos' 中删除特定索引的值
   todos.value.splice(index, 1);
 
-  updateLocalStorage();
+  await saveTodos();
 };
 
-const editTodo = (index) => {
-  todos.value[index] = prompt('Edit todo', todos.value[index]);
-  updateLocalStorage();
+const editTodo = async (index) => {
+  const edited = prompt('Edit todo', todos.value[index]);
+  if (edited === null) {
+    return;
+  }
+
+  todos.value[index] = edited.trim();
+  await saveTodos();
 };
 
-const updateLocalStorage = () => {
-  localStorage.setItem('todos', JSON.stringify(todos.value));
-  localStorage.setItem('dones', JSON.stringify(dones.value));
-};
-
-const clearLocalStorage = () => {
-  if (confirm('Are you sure to clear LocalStorage?')) {
-    localStorage.clear();
-    window.location.reload();
+const clearAllTodos = async () => {
+  if (confirm('Are you sure to clear all shared todos?')) {
+    todos.value = [];
+    dones.value = [];
+    await saveTodos();
   }
 };
 </script>
@@ -158,9 +186,13 @@ const clearLocalStorage = () => {
         </p>
       </div>
       <div class="grid place-content-center grid-flow-col gap-4 mt-10">
-        <UButton @click="clearLocalStorage"><p>clear LocalStorage</p></UButton>
+        <UButton @click="clearAllTodos"><p>clear shared todos</p></UButton>
         <ULink><UIcon name="i-mdi-github" /> </ULink>
       </div>
     </UCard>
+    <p v-if="isSyncing" class="text-center mt-4 text-sm opacity-70">syncing...</p>
+    <p v-if="syncError" class="text-center mt-4 text-sm text-red-500">
+      {{ syncError }}
+    </p>
   </UContainer>
 </template>
