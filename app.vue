@@ -1,59 +1,59 @@
 <script setup>
 useHead({
-  title: 'Nuxt todo',
+  title: "Nuxt todo",
   meta: [
     {
-      name: 'google-site-verification',
-      content: 'uMb53AX2NHoWvhBjQGUPiU2EvzBs2pWg90HYPMkcMP4',
+      name: "google-site-verification",
+      content: "uMb53AX2NHoWvhBjQGUPiU2EvzBs2pWg90HYPMkcMP4",
     },
   ],
 });
 
 useSeoMeta({
-  title: 'Nuxt todo',
-  ogTitle: 'Nuxt todo',
-  description: 'A todo application built with nuxt deploy on netlify',
-  ogDescription: 'A todo application built with nuxt deploy on netlify',
+  title: "Nuxt todo",
+  ogTitle: "Nuxt todo",
+  description: "A todo application built with nuxt deploy on netlify",
+  ogDescription: "A todo application built with nuxt deploy on netlify",
 });
 
 const colorMode = useColorMode();
-const date = useState('date', () => new Date());
+const date = useState("date", () => new Date());
 
 const isDark = computed({
   get() {
-    return colorMode.value === 'dark';
+    return colorMode.value === "dark";
   },
   set() {
-    colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
+    colorMode.preference = colorMode.value === "dark" ? "light" : "dark";
   },
 });
 
 const label = computed(() =>
-  date.value.toLocaleDateString('en-us', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  })
+  date.value.toLocaleDateString("en-us", {
+    weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }),
 );
 //todo
 onMounted(() => {
-  if (localStorage.getItem('todos') !== null) {
-    todos.value = JSON.parse(localStorage.getItem('todos'));
+  if (localStorage.getItem("todos") !== null) {
+    todos.value = JSON.parse(localStorage.getItem("todos"));
   }
-  if (localStorage.getItem('dones') !== null) {
-    dones.value = JSON.parse(localStorage.getItem('dones'));
+  if (localStorage.getItem("dones") !== null) {
+    dones.value = JSON.parse(localStorage.getItem("dones"));
   }
 });
 
-const todos = useState('todos', () => []);
-const todo = useState('todo', () => '');
-const dones = useState('dones', () => []);
+const todos = useState("todos", () => []);
+const todo = useState("todo", () => "");
+const dones = useState("dones", () => []);
 
 const addTodo = () => {
-  if (todo.value !== '') {
+  if (todo.value !== "") {
     todos.value.push(todo.value);
-    todo.value = '';
+    todo.value = "";
   }
 
   updateLocalStorage();
@@ -69,17 +69,17 @@ const doneTodo = (index) => {
 };
 
 const editTodo = (index) => {
-  todos.value[index] = prompt('Edit todo', todos.value[index]);
+  todos.value[index] = prompt("Edit todo", todos.value[index]);
   updateLocalStorage();
 };
 
 const updateLocalStorage = () => {
-  localStorage.setItem('todos', JSON.stringify(todos.value));
-  localStorage.setItem('dones', JSON.stringify(dones.value));
+  localStorage.setItem("todos", JSON.stringify(todos.value));
+  localStorage.setItem("dones", JSON.stringify(dones.value));
 };
 
 const clearLocalStorage = () => {
-  if (confirm('Are you sure to clear LocalStorage?')) {
+  if (confirm("Are you sure to clear LocalStorage?")) {
     localStorage.clear();
     window.location.reload();
   }
